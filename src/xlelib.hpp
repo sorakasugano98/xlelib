@@ -4,7 +4,7 @@
 #include <string>
 
 /* Library version */
-#define XLELIB_VERSION "1.0"
+#define XLELIB_VERSION "1.1"
 
 namespace XLELib {
 	/* Get the library version. */

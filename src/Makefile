@@ -1,5 +1,5 @@
 all:
-	g++ -c xlelib.cpp table.cpp
+	g++ -c xlelib.cpp table.cpp ttable.cpp
 ifeq ($(OS),Windows_NT)
 	del libakutil.a
 	rmdir /s /q ..\build
