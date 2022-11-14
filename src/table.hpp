@@ -3,6 +3,9 @@
 
 #include <vector>
 #include <map>
+#include <utility>
+#include <fstream>
+#include <locale>
 
 #include "xlelib.hpp"
 
@@ -24,6 +27,14 @@ namespace XLELib {
 	/* Class to handle the common table type. */
 	class Table {
 		public:
+			/* Enumeration for different types of tables. */
+			enum class FileType {
+				UNKNOWN,
+				NONE,
+				PIPE_DELIMITED,
+				COMMA_DELIMITED
+			};
+			
 			/* Create an empty table without header. */
 			Table();
 			
@@ -33,37 +44,34 @@ namespace XLELib {
 			/* Delete the table. Does not delete any attached files. */
 			virtual ~Table();
 			
-			/* Class to store the table data. */
-			class Data {
-				public:
-					/* Overloading the array access. */
-					std::vector<std::wstring>& operator[](unsigned long long index);
-					std::vector<std::wstring>& operator[](std::wstring index);
-					std::vector<std::wstring>& operator[](std::string index);
-					
-					/* Redirect "at" access to operator[]). */
-					std::vector<std::wstring>& at(unsigned long long index);
-					std::vector<std::wstring>& at(std::wstring index);
-					std::vector<std::wstring>& at(std::string index);
-					
-					/* Support for size query. */
-					unsigned long long size();
-					
-					/* The table data itself. */
-					std::map<unsigned long long, std::vector<std::wstring>> content;
-					
-					/* Length of the data vector (excluding the id). */
-					unsigned long long length;
-			};
+			/* Read the table from a file.
+			   Input is the file name (including path). */
+			void read(std::string file_name);
+			
+			/* Write the table to a file.
+			   First input is the file name (including path).
+			   Second (optional) input is the file type (pipe, comma, no header).
+			   Third (optional) input is true if the table should be printed in reversed order. */
+			void write(std::string file_name, FileType file_type = FileType::PIPE_DELIMITED, bool reverse = false);
 			
 			/* Remove empty entries, where only the id exists. */
 			void clean();
 			
+			/* Set the locale to use with the table. */
+			void set_table_locale(std::string loc);
+			
 			/* Content of the table. */
-			Data content;
+			std::map<unsigned long long, std::vector<std::wstring>> content;
 			
 			/* Version of the table. */
 			std::wstring version;
+			
+			/* Length of an entry (including the id). */
+			unsigned long long length;
+			
+			/* Locale for the table. */
+			std::string locale;
+			
 	};
 }
 
