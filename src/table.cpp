@@ -208,11 +208,27 @@ void XLELib::Table::clean() {
 }
 
 void XLELib::Table::set_table_locale(std::string loc) {
+	if(loc == "de") {
+		#ifdef _WIN32
+			locale = "german-de";
+		#else
+			locale = "de_DE.UTF-8";
+		#endif
+		return;
+	}
 	if(loc == "tw") {
 		#ifdef _WIN32
-	    	locale = "Chinese-traditional";
+			locale = "chinese-traditional";
 		#else
 			locale = "zh_TW.Big5";
+		#endif
+		return;
+	}
+	if(loc == "us") {
+		#ifdef _WIN32
+			locale = "english-us";
+		#else
+			locale = "en_US.UTF-8";
 		#endif
 		return;
 	}
