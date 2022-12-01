@@ -1,20 +1,21 @@
 all:
-	g++ -c xlelib.cpp table.cpp ttable.cpp
+	g++ -c table.cpp ttable.cpp
 ifeq ($(OS),Windows_NT)
-	del xlelib.a
-	rmdir /s /q ..\build
+	if exist libxlelib.a del libxlelib.a
+	if exist ..\build rmdir /s /q ..\build
 	mkdir ..\build
 	mkdir ..\build\lib
 	mkdir ..\build\include
-	copy *.hpp ..\build\include
+	mkdir ..\build\include\xlelib
+	copy *.hpp ..\build\include\xlelib
 else
 	rm -f xlelib.a
 	rm -r ../build
 	mkdir -p ../build/lib
-	mkdir ../build/include
-	cp *.hpp ../build/include
+	mkdir -p ../build/include/xlelib
+	cp *.hpp ../build/include/xlelib
 endif
-	ar -cvq ../build/lib/xlelib.a *.o
+	ar -cvq ../build/lib/libxlelib.a *.o
 ifeq ($(OS),Windows_NT)
 	del *.o
 else
