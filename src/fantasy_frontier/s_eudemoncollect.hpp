@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_EUDEMONCOLLECT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_EudemonCollect table type. */
-		class S_EudemonCollect : public Table {
+		class S_EudemonCollect : public Conversion<S_EudemonCollect> {
 			public:
 				/* Create an empty S_EudemonCollect table without header. */
 				S_EudemonCollect();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_EudemonCollect table. Does not delete any attached files. */
 				virtual ~S_EudemonCollect();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

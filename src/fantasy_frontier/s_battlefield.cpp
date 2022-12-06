@@ -1,22 +1,26 @@
 #include "s_battlefield.hpp"
 
-XLELib::FF::S_BattlefieldError::S_BattlefieldError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_BattlefieldError::S_BattlefieldError(std::string msg) {
+	error = "[XLELib FF S_BattlefieldError] " + msg;
 }
 
 const char* XLELib::FF::S_BattlefieldError::what() const throw() {
-	std::string ret = "[XLELib FF S_BattlefieldError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Battlefield::S_Battlefield() : Table() {
-	
+XLELib::FF::S_Battlefield::S_Battlefield() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Battlefield::S_Battlefield(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Battlefield::S_Battlefield(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Battlefield::~S_Battlefield() {
 	
+}
+
+void XLELib::FF::S_Battlefield::init_conversion() {
+	class_pointer = this;
+	conversions = {};
 }

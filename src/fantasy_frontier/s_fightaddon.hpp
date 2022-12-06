@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_FIGHTADDON_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_FightAddon table type. */
-		class S_FightAddon : public Table {
+		class S_FightAddon : public Conversion<S_FightAddon> {
 			public:
 				/* Create an empty S_FightAddon table without header. */
 				S_FightAddon();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_FightAddon table. Does not delete any attached files. */
 				virtual ~S_FightAddon();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

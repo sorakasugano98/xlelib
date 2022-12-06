@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_GOODS_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Goods table type. */
-		class S_Goods : public Table {
+		class S_Goods : public Conversion<S_Goods> {
 			public:
 				/* Create an empty S_Goods table without header. */
 				S_Goods();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Goods table. Does not delete any attached files. */
 				virtual ~S_Goods();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

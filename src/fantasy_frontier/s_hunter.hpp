@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_HUNTER_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Hunter table type. */
-		class S_Hunter : public Table {
+		class S_Hunter : public Conversion<S_Hunter> {
 			public:
 				/* Create an empty S_Hunter table without header. */
 				S_Hunter();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Hunter table. Does not delete any attached files. */
 				virtual ~S_Hunter();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

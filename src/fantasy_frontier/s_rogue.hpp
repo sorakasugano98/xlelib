@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_ROGUE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Rogue table type. */
-		class S_Rogue : public Table {
+		class S_Rogue : public Conversion<S_Rogue> {
 			public:
 				/* Create an empty S_Rogue table without header. */
 				S_Rogue();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Rogue table. Does not delete any attached files. */
 				virtual ~S_Rogue();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

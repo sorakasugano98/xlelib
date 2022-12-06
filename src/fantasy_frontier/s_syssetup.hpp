@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_SYSSETUP_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_SysSetup table type. */
-		class S_SysSetup : public Table {
+		class S_SysSetup : public Conversion<S_SysSetup> {
 			public:
 				/* Create an empty S_SysSetup table without header. */
 				S_SysSetup();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_SysSetup table. Does not delete any attached files. */
 				virtual ~S_SysSetup();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

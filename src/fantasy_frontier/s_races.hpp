@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_RACES_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Races table type. */
-		class S_Races : public Table {
+		class S_Races : public Conversion<S_Races> {
 			public:
 				/* Create an empty S_Races table without header. */
 				S_Races();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Races table. Does not delete any attached files. */
 				virtual ~S_Races();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

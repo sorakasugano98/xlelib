@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_TREASUREINDEX_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_TreasureIndex table type. */
-		class S_TreasureIndex : public Table {
+		class S_TreasureIndex : public Conversion<S_TreasureIndex> {
 			public:
 				/* Create an empty S_TreasureIndex table without header. */
 				S_TreasureIndex();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_TreasureIndex table. Does not delete any attached files. */
 				virtual ~S_TreasureIndex();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

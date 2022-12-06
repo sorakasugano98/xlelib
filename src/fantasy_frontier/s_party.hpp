@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_PARTY_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Party table type. */
-		class S_Party : public Table {
+		class S_Party : public Conversion<S_Party> {
 			public:
 				/* Create an empty S_Party table without header. */
 				S_Party();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Party table. Does not delete any attached files. */
 				virtual ~S_Party();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

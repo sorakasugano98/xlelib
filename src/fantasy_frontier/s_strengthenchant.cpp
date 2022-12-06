@@ -1,23 +1,26 @@
 #include "s_strengthenchant.hpp"
 
-XLELib::FF::S_StrengthEnchantError::S_StrengthEnchantError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_StrengthEnchantError::S_StrengthEnchantError(std::string msg) {
+	error = "[XLELib FF S_StrengthEnchantError] " + msg;
 }
 
 const char* XLELib::FF::S_StrengthEnchantError::what() const throw() {
-	std::string ret = "[XLELib FF S_StrengthEnchantError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_StrengthEnchant::S_StrengthEnchant() : Table() {
-	
+XLELib::FF::S_StrengthEnchant::S_StrengthEnchant() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_StrengthEnchant::S_StrengthEnchant(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_StrengthEnchant::S_StrengthEnchant(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_StrengthEnchant::~S_StrengthEnchant() {
 	
 }
 
+void XLELib::FF::S_StrengthEnchant::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_COLLECTION_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Collection table type. */
-		class S_Collection : public Table {
+		class S_Collection : public Conversion<S_Collection> {
 			public:
 				/* Create an empty S_Collection table without header. */
 				S_Collection();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Collection table. Does not delete any attached files. */
 				virtual ~S_Collection();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

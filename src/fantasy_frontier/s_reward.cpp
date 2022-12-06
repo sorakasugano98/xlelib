@@ -1,23 +1,26 @@
 #include "s_reward.hpp"
 
-XLELib::FF::S_RewardError::S_RewardError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_RewardError::S_RewardError(std::string msg) {
+	error = "[XLELib FF S_RewardError] " + msg;
 }
 
 const char* XLELib::FF::S_RewardError::what() const throw() {
-	std::string ret = "[XLELib FF S_RewardError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Reward::S_Reward() : Table() {
-	
+XLELib::FF::S_Reward::S_Reward() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Reward::S_Reward(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Reward::S_Reward(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Reward::~S_Reward() {
 	
 }
 
+void XLELib::FF::S_Reward::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

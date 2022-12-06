@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_MASK_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Mask table type. */
-		class S_Mask : public Table {
+		class S_Mask : public Conversion<S_Mask> {
 			public:
 				/* Create an empty S_Mask table without header. */
 				S_Mask();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Mask table. Does not delete any attached files. */
 				virtual ~S_Mask();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_LIFEPLAN_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_LifePlan table type. */
-		class S_LifePlan : public Table {
+		class S_LifePlan : public Conversion<S_LifePlan> {
 			public:
 				/* Create an empty S_LifePlan table without header. */
 				S_LifePlan();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_LifePlan table. Does not delete any attached files. */
 				virtual ~S_LifePlan();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

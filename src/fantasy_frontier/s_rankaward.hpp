@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_RANKAWARD_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_RankAward table type. */
-		class S_RankAward : public Table {
+		class S_RankAward : public Conversion<S_RankAward> {
 			public:
 				/* Create an empty S_RankAward table without header. */
 				S_RankAward();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_RankAward table. Does not delete any attached files. */
 				virtual ~S_RankAward();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

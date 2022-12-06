@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_BATTLEFIELD_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Battlefield table type. */
-		class S_Battlefield : public Table {
+		class S_Battlefield : public Conversion<S_Battlefield> {
 			public:
 				/* Create an empty S_Battlefield table without header. */
 				S_Battlefield();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Battlefield table. Does not delete any attached files. */
 				virtual ~S_Battlefield();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

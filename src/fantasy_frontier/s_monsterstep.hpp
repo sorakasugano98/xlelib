@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_MONSTERSTEP_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_MonsterStep table type. */
-		class S_MonsterStep : public Table {
+		class S_MonsterStep : public Conversion<S_MonsterStep> {
 			public:
 				/* Create an empty S_MonsterStep table without header. */
 				S_MonsterStep();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_MonsterStep table. Does not delete any attached files. */
 				virtual ~S_MonsterStep();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

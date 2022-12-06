@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_DIAGRAMGROUP_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_DiagramGroup table type. */
-		class S_DiagramGroup : public Table {
+		class S_DiagramGroup : public Conversion<S_DiagramGroup> {
 			public:
 				/* Create an empty S_DiagramGroup table without header. */
 				S_DiagramGroup();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_DiagramGroup table. Does not delete any attached files. */
 				virtual ~S_DiagramGroup();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

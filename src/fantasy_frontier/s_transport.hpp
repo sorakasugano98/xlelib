@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_TRANSPORT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Transport table type. */
-		class S_Transport : public Table {
+		class S_Transport : public Conversion<S_Transport> {
 			public:
 				/* Create an empty S_Transport table without header. */
 				S_Transport();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Transport table. Does not delete any attached files. */
 				virtual ~S_Transport();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

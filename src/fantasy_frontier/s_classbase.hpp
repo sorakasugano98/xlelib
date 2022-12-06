@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_CLASSBASE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_ClassBase table type. */
-		class S_ClassBase : public Table {
+		class S_ClassBase : public Conversion<S_ClassBase> {
 			public:
 				/* Create an empty S_ClassBase table without header. */
 				S_ClassBase();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_ClassBase table. Does not delete any attached files. */
 				virtual ~S_ClassBase();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

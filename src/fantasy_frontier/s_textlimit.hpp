@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_TEXTLIMIT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_TextLimit table type. */
-		class S_TextLimit : public Table {
+		class S_TextLimit : public Conversion<S_TextLimit> {
 			public:
 				/* Create an empty S_TextLimit table without header. */
 				S_TextLimit();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_TextLimit table. Does not delete any attached files. */
 				virtual ~S_TextLimit();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

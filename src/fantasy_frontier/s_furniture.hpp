@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_FURNITURE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Furniture table type. */
-		class S_Furniture : public Table {
+		class S_Furniture : public Conversion<S_Furniture> {
 			public:
 				/* Create an empty S_Furniture table without header. */
 				S_Furniture();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Furniture table. Does not delete any attached files. */
 				virtual ~S_Furniture();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

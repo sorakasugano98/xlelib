@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_PRODUCERANK_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_ProduceRank table type. */
-		class S_ProduceRank : public Table {
+		class S_ProduceRank : public Conversion<S_ProduceRank> {
 			public:
 				/* Create an empty S_ProduceRank table without header. */
 				S_ProduceRank();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_ProduceRank table. Does not delete any attached files. */
 				virtual ~S_ProduceRank();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

@@ -1,23 +1,26 @@
 #include "s_title.hpp"
 
-XLELib::FF::S_TitleError::S_TitleError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_TitleError::S_TitleError(std::string msg) {
+	error = "[XLELib FF S_TitleError] " + msg;
 }
 
 const char* XLELib::FF::S_TitleError::what() const throw() {
-	std::string ret = "[XLELib FF S_TitleError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Title::S_Title() : Table() {
-	
+XLELib::FF::S_Title::S_Title() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Title::S_Title(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Title::S_Title(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Title::~S_Title() {
 	
 }
 
+void XLELib::FF::S_Title::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

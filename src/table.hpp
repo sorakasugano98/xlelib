@@ -60,6 +60,12 @@ namespace XLELib {
 			/* Set the locale to use with the table. */
 			void set_table_locale(std::string loc);
 			
+			/* Change the table version and length by resizing the table and either adding empty columns or removing existing columns at the end.
+			   Be careful, this operation may discard data!
+			   First input is the new version for the table after resizing.
+			   Second input is the new length of the table after resizing (including id). */
+			void resize_at_end(std::wstring new_version, unsigned long long new_length);
+			
 			/* Content of the table. */
 			std::map<unsigned long long, std::vector<std::wstring>> content;
 			
@@ -71,7 +77,6 @@ namespace XLELib {
 			
 			/* Locale for the table. */
 			std::string locale;
-			
 	};
 }
 

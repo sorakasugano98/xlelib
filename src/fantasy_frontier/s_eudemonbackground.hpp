@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_EUDEMONBACKGROUND_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_EudemonBackground table type. */
-		class S_EudemonBackground : public Table {
+		class S_EudemonBackground : public Conversion<S_EudemonBackground> {
 			public:
 				/* Create an empty S_EudemonBackground table without header. */
 				S_EudemonBackground();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_EudemonBackground table. Does not delete any attached files. */
 				virtual ~S_EudemonBackground();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

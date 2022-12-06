@@ -1,23 +1,26 @@
 #include "s_treasureindex.hpp"
 
-XLELib::FF::S_TreasureIndexError::S_TreasureIndexError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_TreasureIndexError::S_TreasureIndexError(std::string msg) {
+	error = "[XLELib FF S_TreasureIndexError] " + msg;
 }
 
 const char* XLELib::FF::S_TreasureIndexError::what() const throw() {
-	std::string ret = "[XLELib FF S_TreasureIndexError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_TreasureIndex::S_TreasureIndex() : Table() {
-	
+XLELib::FF::S_TreasureIndex::S_TreasureIndex() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_TreasureIndex::S_TreasureIndex(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_TreasureIndex::S_TreasureIndex(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_TreasureIndex::~S_TreasureIndex() {
 	
 }
 
+void XLELib::FF::S_TreasureIndex::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

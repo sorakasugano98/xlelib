@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_CHARCOLOR_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_CharColor table type. */
-		class S_CharColor : public Table {
+		class S_CharColor : public Conversion<S_CharColor> {
 			public:
 				/* Create an empty S_CharColor table without header. */
 				S_CharColor();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_CharColor table. Does not delete any attached files. */
 				virtual ~S_CharColor();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

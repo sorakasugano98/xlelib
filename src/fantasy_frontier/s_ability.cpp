@@ -1,22 +1,26 @@
 #include "s_ability.hpp"
 
-XLELib::FF::S_AbilityError::S_AbilityError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_AbilityError::S_AbilityError(std::string msg) {
+	error = "[XLELib FF S_AbilityError] " + msg;
 }
 
 const char* XLELib::FF::S_AbilityError::what() const throw() {
-	std::string ret = "[XLELib FF S_AbilityError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Ability::S_Ability() : Table() {
-	
+XLELib::FF::S_Ability::S_Ability() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Ability::S_Ability(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Ability::S_Ability(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Ability::~S_Ability() {
 	
+}
+
+void XLELib::FF::S_Ability::init_conversion() {
+	class_pointer = this;
+	conversions = {};
 }

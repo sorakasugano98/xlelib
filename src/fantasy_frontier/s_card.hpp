@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_CARD_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Card table type. */
-		class S_Card : public Table {
+		class S_Card : public Conversion<S_Card> {
 			public:
 				/* Create an empty S_Card table without header. */
 				S_Card();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Card table. Does not delete any attached files. */
 				virtual ~S_Card();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

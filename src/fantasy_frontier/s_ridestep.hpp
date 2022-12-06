@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_RIDESTEP_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_RideStep table type. */
-		class S_RideStep : public Table {
+		class S_RideStep : public Conversion<S_RideStep> {
 			public:
 				/* Create an empty S_RideStep table without header. */
 				S_RideStep();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_RideStep table. Does not delete any attached files. */
 				virtual ~S_RideStep();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

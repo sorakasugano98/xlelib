@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_ACHIEVEMENT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Achievement table type. */
-		class S_Achievement : public Table {
+		class S_Achievement : public Conversion<S_Achievement> {
 			public:
 				/* Create an empty S_Achievement table without header. */
 				S_Achievement();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Achievement table. Does not delete any attached files. */
 				virtual ~S_Achievement();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

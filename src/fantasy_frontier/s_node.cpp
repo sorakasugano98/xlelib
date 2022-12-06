@@ -1,23 +1,26 @@
 #include "s_node.hpp"
 
-XLELib::FF::S_NodeError::S_NodeError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_NodeError::S_NodeError(std::string msg) {
+	error = "[XLELib FF S_NodeError] " + msg;
 }
 
 const char* XLELib::FF::S_NodeError::what() const throw() {
-	std::string ret = "[XLELib FF S_NodeError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Node::S_Node() : Table() {
-	
+XLELib::FF::S_Node::S_Node() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Node::S_Node(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Node::S_Node(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Node::~S_Node() {
 	
 }
 
+void XLELib::FF::S_Node::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_FESTIVAL_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Festival table type. */
-		class S_Festival : public Table {
+		class S_Festival : public Conversion<S_Festival> {
 			public:
 				/* Create an empty S_Festival table without header. */
 				S_Festival();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Festival table. Does not delete any attached files. */
 				virtual ~S_Festival();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

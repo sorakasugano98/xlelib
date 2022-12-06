@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_ITEMMALL_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_ItemMall table type. */
-		class S_ItemMall : public Table {
+		class S_ItemMall : public Conversion<S_ItemMall> {
 			public:
 				/* Create an empty S_ItemMall table without header. */
 				S_ItemMall();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_ItemMall table. Does not delete any attached files. */
 				virtual ~S_ItemMall();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

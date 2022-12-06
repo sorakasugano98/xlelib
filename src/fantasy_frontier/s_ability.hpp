@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_ABILITY_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Ability table type. */
-		class S_Ability : public Table {
+		class S_Ability : public Conversion<S_Ability> {
 			public:
 				/* Create an empty S_Ability table without header. */
 				S_Ability();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Ability table. Does not delete any attached files. */
 				virtual ~S_Ability();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

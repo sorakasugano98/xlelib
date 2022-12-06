@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_NODE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Node table type. */
-		class S_Node : public Table {
+		class S_Node : public Conversion<S_Node> {
 			public:
 				/* Create an empty S_Node table without header. */
 				S_Node();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Node table. Does not delete any attached files. */
 				virtual ~S_Node();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

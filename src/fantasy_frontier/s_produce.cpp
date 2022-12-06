@@ -1,23 +1,26 @@
 #include "s_produce.hpp"
 
-XLELib::FF::S_ProduceError::S_ProduceError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_ProduceError::S_ProduceError(std::string msg) {
+	error = "[XLELib FF S_ProduceError] " + msg;
 }
 
 const char* XLELib::FF::S_ProduceError::what() const throw() {
-	std::string ret = "[XLELib FF S_ProduceError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Produce::S_Produce() : Table() {
-	
+XLELib::FF::S_Produce::S_Produce() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Produce::S_Produce(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Produce::S_Produce(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Produce::~S_Produce() {
 	
 }
 
+void XLELib::FF::S_Produce::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

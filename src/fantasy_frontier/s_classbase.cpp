@@ -1,23 +1,26 @@
 #include "s_classbase.hpp"
 
-XLELib::FF::S_ClassBaseError::S_ClassBaseError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_ClassBaseError::S_ClassBaseError(std::string msg) {
+	error = "[XLELib FF S_ClassBaseError] " + msg;
 }
 
 const char* XLELib::FF::S_ClassBaseError::what() const throw() {
-	std::string ret = "[XLELib FF S_ClassBaseError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_ClassBase::S_ClassBase() : Table() {
-	
+XLELib::FF::S_ClassBase::S_ClassBase() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_ClassBase::S_ClassBase(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_ClassBase::S_ClassBase(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_ClassBase::~S_ClassBase() {
 	
 }
 
+void XLELib::FF::S_ClassBase::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

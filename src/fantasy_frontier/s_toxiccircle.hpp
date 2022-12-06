@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_TOXICCIRCLE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_ToxicCircle table type. */
-		class S_ToxicCircle : public Table {
+		class S_ToxicCircle : public Conversion<S_ToxicCircle> {
 			public:
 				/* Create an empty S_ToxicCircle table without header. */
 				S_ToxicCircle();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_ToxicCircle table. Does not delete any attached files. */
 				virtual ~S_ToxicCircle();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

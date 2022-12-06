@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_ENCHANT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Enchant table type. */
-		class S_Enchant : public Table {
+		class S_Enchant : public Conversion<S_Enchant> {
 			public:
 				/* Create an empty S_Enchant table without header. */
 				S_Enchant();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Enchant table. Does not delete any attached files. */
 				virtual ~S_Enchant();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

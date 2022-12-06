@@ -1,12 +1,11 @@
 #include "table.hpp"
 
-XLELib::TableError::TableError(std::string msg) : error(msg) {
-	
+XLELib::TableError::TableError(std::string msg) {
+	error = "[XLELib TableError] " + msg;
 }
 
 const char* XLELib::TableError::what() const throw() {
-	std::string ret = "[XLELib TableError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
 XLELib::Table::Table() {
@@ -233,4 +232,25 @@ void XLELib::Table::set_table_locale(std::string loc) {
 		return;
 	}
 	throw TableError("Set locale failed, unknown locale for table.");
+}
+
+void XLELib::Table::resize_at_end(std::wstring new_version, unsigned long long new_length) {
+	if(new_length == length) {
+		throw TableError("Resizing failed, current and target column amount is the same.");
+	}
+	if(new_length > length) {
+		unsigned long long columns_to_add = new_length - length;
+		for(std::map<unsigned long long, std::vector<std::wstring>>::iterator i = content.begin(); i != content.end(); i++) {
+			for(unsigned long long j = 0; j < columns_to_add; j++) {
+				i->second.push_back(L"");
+			}
+		}
+		length = new_length;
+	} else {
+		unsigned long long columns_to_remove = length - new_length;
+		for(std::map<unsigned long long, std::vector<std::wstring>>::iterator i = content.begin(); i != content.end(); i++) {
+			i->second.resize(i->second.size() - columns_to_remove);
+		}
+	}
+	version = new_version;
 }

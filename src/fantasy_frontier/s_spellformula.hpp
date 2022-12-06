@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_SPELLFORMULA_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_SpellFormula table type. */
-		class S_SpellFormula : public Table {
+		class S_SpellFormula : public Conversion<S_SpellFormula> {
 			public:
 				/* Create an empty S_SpellFormula table without header. */
 				S_SpellFormula();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_SpellFormula table. Does not delete any attached files. */
 				virtual ~S_SpellFormula();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

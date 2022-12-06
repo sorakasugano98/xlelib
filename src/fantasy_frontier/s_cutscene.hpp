@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_CUTSCENE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_CutScene table type. */
-		class S_CutScene : public Table {
+		class S_CutScene : public Conversion<S_CutScene> {
 			public:
 				/* Create an empty S_CutScene table without header. */
 				S_CutScene();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_CutScene table. Does not delete any attached files. */
 				virtual ~S_CutScene();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

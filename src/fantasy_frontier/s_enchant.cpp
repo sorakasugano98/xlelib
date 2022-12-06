@@ -1,23 +1,26 @@
 #include "s_enchant.hpp"
 
-XLELib::FF::S_EnchantError::S_EnchantError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_EnchantError::S_EnchantError(std::string msg) {
+	error = "[XLELib FF S_EnchantError] " + msg;
 }
 
 const char* XLELib::FF::S_EnchantError::what() const throw() {
-	std::string ret = "[XLELib FF S_EnchantError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Enchant::S_Enchant() : Table() {
-	
+XLELib::FF::S_Enchant::S_Enchant() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Enchant::S_Enchant(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Enchant::S_Enchant(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Enchant::~S_Enchant() {
 	
 }
 
+void XLELib::FF::S_Enchant::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

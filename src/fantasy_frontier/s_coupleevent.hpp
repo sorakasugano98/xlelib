@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_COUPLEEVENT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_CoupleEvent table type. */
-		class S_CoupleEvent : public Table {
+		class S_CoupleEvent : public Conversion<S_CoupleEvent> {
 			public:
 				/* Create an empty S_CoupleEvent table without header. */
 				S_CoupleEvent();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_CoupleEvent table. Does not delete any attached files. */
 				virtual ~S_CoupleEvent();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

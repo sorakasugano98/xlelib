@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_COUPLETITLE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_CoupleTitle table type. */
-		class S_CoupleTitle : public Table {
+		class S_CoupleTitle : public Conversion<S_CoupleTitle> {
 			public:
 				/* Create an empty S_CoupleTitle table without header. */
 				S_CoupleTitle();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_CoupleTitle table. Does not delete any attached files. */
 				virtual ~S_CoupleTitle();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

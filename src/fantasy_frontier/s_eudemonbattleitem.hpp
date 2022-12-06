@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_EUDEMONBATTLEITEM_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_EudemonBattleItem table type. */
-		class S_EudemonBattleItem : public Table {
+		class S_EudemonBattleItem : public Conversion<S_EudemonBattleItem> {
 			public:
 				/* Create an empty S_EudemonBattleItem table without header. */
 				S_EudemonBattleItem();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_EudemonBattleItem table. Does not delete any attached files. */
 				virtual ~S_EudemonBattleItem();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

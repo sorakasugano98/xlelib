@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_DIAGRAMNODE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_DiagramNode table type. */
-		class S_DiagramNode : public Table {
+		class S_DiagramNode : public Conversion<S_DiagramNode> {
 			public:
 				/* Create an empty S_DiagramNode table without header. */
 				S_DiagramNode();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_DiagramNode table. Does not delete any attached files. */
 				virtual ~S_DiagramNode();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

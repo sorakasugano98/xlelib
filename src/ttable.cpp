@@ -1,12 +1,11 @@
 #include "ttable.hpp"
 
-XLELib::TTableError::TTableError(std::string msg) : error(msg) {
-	
+XLELib::TTableError::TTableError(std::string msg) {
+	error = "[XLELib TTableError] " + msg;
 }
 
 const char* XLELib::TTableError::what() const throw() {
-	std::string ret = "[XLELib TTableError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
 XLELib::TTable::TTable() {

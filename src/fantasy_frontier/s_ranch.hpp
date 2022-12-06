@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_RANCH_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Ranch table type. */
-		class S_Ranch : public Table {
+		class S_Ranch : public Conversion<S_Ranch> {
 			public:
 				/* Create an empty S_Ranch table without header. */
 				S_Ranch();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Ranch table. Does not delete any attached files. */
 				virtual ~S_Ranch();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

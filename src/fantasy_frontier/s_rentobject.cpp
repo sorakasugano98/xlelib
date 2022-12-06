@@ -1,23 +1,26 @@
 #include "s_rentobject.hpp"
 
-XLELib::FF::S_RentObjectError::S_RentObjectError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_RentObjectError::S_RentObjectError(std::string msg) {
+	error = "[XLELib FF S_RentObjectError] " + msg;
 }
 
 const char* XLELib::FF::S_RentObjectError::what() const throw() {
-	std::string ret = "[XLELib FF S_RentObjectError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_RentObject::S_RentObject() : Table() {
-	
+XLELib::FF::S_RentObject::S_RentObject() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_RentObject::S_RentObject(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_RentObject::S_RentObject(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_RentObject::~S_RentObject() {
 	
 }
 
+void XLELib::FF::S_RentObject::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

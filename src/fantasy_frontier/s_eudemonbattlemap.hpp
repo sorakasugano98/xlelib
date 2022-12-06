@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_EUDEMONBATTLEMAP_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_EudemonBattleMap table type. */
-		class S_EudemonBattleMap : public Table {
+		class S_EudemonBattleMap : public Conversion<S_EudemonBattleMap> {
 			public:
 				/* Create an empty S_EudemonBattleMap table without header. */
 				S_EudemonBattleMap();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_EudemonBattleMap table. Does not delete any attached files. */
 				virtual ~S_EudemonBattleMap();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

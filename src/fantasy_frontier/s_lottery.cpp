@@ -1,23 +1,26 @@
 #include "s_lottery.hpp"
 
-XLELib::FF::S_LotteryError::S_LotteryError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_LotteryError::S_LotteryError(std::string msg) {
+	error = "[XLELib FF S_LotteryError] " + msg;
 }
 
 const char* XLELib::FF::S_LotteryError::what() const throw() {
-	std::string ret = "[XLELib FF S_LotteryError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Lottery::S_Lottery() : Table() {
-	
+XLELib::FF::S_Lottery::S_Lottery() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Lottery::S_Lottery(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Lottery::S_Lottery(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Lottery::~S_Lottery() {
 	
 }
 
+void XLELib::FF::S_Lottery::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

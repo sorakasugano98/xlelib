@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_CARDFIGHT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_CardFight table type. */
-		class S_CardFight : public Table {
+		class S_CardFight : public Conversion<S_CardFight> {
 			public:
 				/* Create an empty S_CardFight table without header. */
 				S_CardFight();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_CardFight table. Does not delete any attached files. */
 				virtual ~S_CardFight();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

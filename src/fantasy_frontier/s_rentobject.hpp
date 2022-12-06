@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_RENTOBJECT_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_RentObject table type. */
-		class S_RentObject : public Table {
+		class S_RentObject : public Conversion<S_RentObject> {
 			public:
 				/* Create an empty S_RentObject table without header. */
 				S_RentObject();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_RentObject table. Does not delete any attached files. */
 				virtual ~S_RentObject();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

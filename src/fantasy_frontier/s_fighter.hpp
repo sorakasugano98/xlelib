@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_FIGHTER_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Fighter table type. */
-		class S_Fighter : public Table {
+		class S_Fighter : public Conversion<S_Fighter> {
 			public:
 				/* Create an empty S_Fighter table without header. */
 				S_Fighter();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Fighter table. Does not delete any attached files. */
 				virtual ~S_Fighter();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

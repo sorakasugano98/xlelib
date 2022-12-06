@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_MISSIONLIST_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_MissionList table type. */
-		class S_MissionList : public Table {
+		class S_MissionList : public Conversion<S_MissionList> {
 			public:
 				/* Create an empty S_MissionList table without header. */
 				S_MissionList();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_MissionList table. Does not delete any attached files. */
 				virtual ~S_MissionList();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

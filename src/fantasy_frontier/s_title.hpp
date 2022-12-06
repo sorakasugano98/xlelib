@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_TITLE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Title table type. */
-		class S_Title : public Table {
+		class S_Title : public Conversion<S_Title> {
 			public:
 				/* Create an empty S_Title table without header. */
 				S_Title();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Title table. Does not delete any attached files. */
 				virtual ~S_Title();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

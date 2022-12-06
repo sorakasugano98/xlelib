@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_CUSTOMEQUIP_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_CustomEquip table type. */
-		class S_CustomEquip : public Table {
+		class S_CustomEquip : public Conversion<S_CustomEquip> {
 			public:
 				/* Create an empty S_CustomEquip table without header. */
 				S_CustomEquip();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_CustomEquip table. Does not delete any attached files. */
 				virtual ~S_CustomEquip();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

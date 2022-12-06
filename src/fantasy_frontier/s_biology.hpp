@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_BIOLOGY_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Biology table type. */
-		class S_Biology : public Table {
+		class S_Biology : public Conversion<S_Biology> {
 			public:
 				/* Create an empty S_Biology table without header. */
 				S_Biology();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Biology table. Does not delete any attached files. */
 				virtual ~S_Biology();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

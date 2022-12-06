@@ -1,23 +1,26 @@
 #include "s_store.hpp"
 
-XLELib::FF::S_StoreError::S_StoreError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_StoreError::S_StoreError(std::string msg) {
+	error = "[XLELib FF S_StoreError] " + msg;
 }
 
 const char* XLELib::FF::S_StoreError::what() const throw() {
-	std::string ret = "[XLELib FF S_StoreError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Store::S_Store() : Table() {
-	
+XLELib::FF::S_Store::S_Store() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Store::S_Store(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Store::S_Store(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Store::~S_Store() {
 	
 }
 
+void XLELib::FF::S_Store::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_PARTNER_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Partner table type. */
-		class S_Partner : public Table {
+		class S_Partner : public Conversion<S_Partner> {
 			public:
 				/* Create an empty S_Partner table without header. */
 				S_Partner();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Partner table. Does not delete any attached files. */
 				virtual ~S_Partner();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

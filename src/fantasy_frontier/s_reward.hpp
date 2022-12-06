@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_REWARD_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Reward table type. */
-		class S_Reward : public Table {
+		class S_Reward : public Conversion<S_Reward> {
 			public:
 				/* Create an empty S_Reward table without header. */
 				S_Reward();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Reward table. Does not delete any attached files. */
 				virtual ~S_Reward();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

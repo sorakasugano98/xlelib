@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_ADVENTUREROAD_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_AdventureRoad table type. */
-		class S_AdventureRoad : public Table {
+		class S_AdventureRoad : public Conversion<S_AdventureRoad> {
 			public:
 				/* Create an empty S_AdventureRoad table without header. */
 				S_AdventureRoad();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_AdventureRoad table. Does not delete any attached files. */
 				virtual ~S_AdventureRoad();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

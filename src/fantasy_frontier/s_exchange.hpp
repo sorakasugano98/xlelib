@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_EXCHANGE_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_Exchange table type. */
-		class S_Exchange : public Table {
+		class S_Exchange : public Conversion<S_Exchange> {
 			public:
 				/* Create an empty S_Exchange table without header. */
 				S_Exchange();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_Exchange table. Does not delete any attached files. */
 				virtual ~S_Exchange();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

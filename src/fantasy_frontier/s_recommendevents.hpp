@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_RECOMMENDEVENTS_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_RecommendEvents table type. */
-		class S_RecommendEvents : public Table {
+		class S_RecommendEvents : public Conversion<S_RecommendEvents> {
 			public:
 				/* Create an empty S_RecommendEvents table without header. */
 				S_RecommendEvents();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_RecommendEvents table. Does not delete any attached files. */
 				virtual ~S_RecommendEvents();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

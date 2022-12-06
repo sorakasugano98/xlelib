@@ -1,22 +1,26 @@
 #include "s_card.hpp"
 
-XLELib::FF::S_CardError::S_CardError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_CardError::S_CardError(std::string msg) {
+	error = "[XLELib FF S_CardError] " + msg;
 }
 
 const char* XLELib::FF::S_CardError::what() const throw() {
-	std::string ret = "[XLELib FF S_CardError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_Card::S_Card() : Table() {
-	
+XLELib::FF::S_Card::S_Card() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_Card::S_Card(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_Card::S_Card(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_Card::~S_Card() {
 	
+}
+
+void XLELib::FF::S_Card::init_conversion() {
+	class_pointer = this;
+	conversions = {};
 }

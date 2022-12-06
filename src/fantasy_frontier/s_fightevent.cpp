@@ -1,23 +1,26 @@
 #include "s_fightevent.hpp"
 
-XLELib::FF::S_FightEventError::S_FightEventError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_FightEventError::S_FightEventError(std::string msg) {
+	error = "[XLELib FF S_FightEventError] " + msg;
 }
 
 const char* XLELib::FF::S_FightEventError::what() const throw() {
-	std::string ret = "[XLELib FF S_FightEventError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_FightEvent::S_FightEvent() : Table() {
-	
+XLELib::FF::S_FightEvent::S_FightEvent() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_FightEvent::S_FightEvent(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_FightEvent::S_FightEvent(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_FightEvent::~S_FightEvent() {
 	
 }
 
+void XLELib::FF::S_FightEvent::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

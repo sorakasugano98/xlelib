@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_CARDSPELL_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_CardSpell table type. */
-		class S_CardSpell : public Table {
+		class S_CardSpell : public Conversion<S_CardSpell> {
 			public:
 				/* Create an empty S_CardSpell table without header. */
 				S_CardSpell();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_CardSpell table. Does not delete any attached files. */
 				virtual ~S_CardSpell();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

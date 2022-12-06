@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_EUDEMONRANK_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_EudemonRank table type. */
-		class S_EudemonRank : public Table {
+		class S_EudemonRank : public Conversion<S_EudemonRank> {
 			public:
 				/* Create an empty S_EudemonRank table without header. */
 				S_EudemonRank();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_EudemonRank table. Does not delete any attached files. */
 				virtual ~S_EudemonRank();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

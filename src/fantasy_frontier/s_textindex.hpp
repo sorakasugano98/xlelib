@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_TEXTINDEX_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_TextIndex table type. */
-		class S_TextIndex : public Table {
+		class S_TextIndex : public Conversion<S_TextIndex> {
 			public:
 				/* Create an empty S_TextIndex table without header. */
 				S_TextIndex();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_TextIndex table. Does not delete any attached files. */
 				virtual ~S_TextIndex();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

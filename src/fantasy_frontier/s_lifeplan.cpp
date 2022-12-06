@@ -1,23 +1,26 @@
 #include "s_lifeplan.hpp"
 
-XLELib::FF::S_LifePlanError::S_LifePlanError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_LifePlanError::S_LifePlanError(std::string msg) {
+	error = "[XLELib FF S_LifePlanError] " + msg;
 }
 
 const char* XLELib::FF::S_LifePlanError::what() const throw() {
-	std::string ret = "[XLELib FF S_LifePlanError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_LifePlan::S_LifePlan() : Table() {
-	
+XLELib::FF::S_LifePlan::S_LifePlan() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_LifePlan::S_LifePlan(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_LifePlan::S_LifePlan(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_LifePlan::~S_LifePlan() {
 	
 }
 
+void XLELib::FF::S_LifePlan::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

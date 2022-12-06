@@ -1,23 +1,26 @@
 #include "s_eudemonrank.hpp"
 
-XLELib::FF::S_EudemonRankError::S_EudemonRankError(std::string msg) : error(msg) {
-	
+XLELib::FF::S_EudemonRankError::S_EudemonRankError(std::string msg) {
+	error = "[XLELib FF S_EudemonRankError] " + msg;
 }
 
 const char* XLELib::FF::S_EudemonRankError::what() const throw() {
-	std::string ret = "[XLELib FF S_EudemonRankError] " + error;
-	return ret.c_str();
+	return error.c_str();
 }
 
-XLELib::FF::S_EudemonRank::S_EudemonRank() : Table() {
-	
+XLELib::FF::S_EudemonRank::S_EudemonRank() : Conversion() {
+	init_conversion();
 }
 
-XLELib::FF::S_EudemonRank::S_EudemonRank(std::string input_file) : Table(input_file) {
-	
+XLELib::FF::S_EudemonRank::S_EudemonRank(std::string input_file) : Conversion(input_file) {
+	init_conversion();
 }
 
 XLELib::FF::S_EudemonRank::~S_EudemonRank() {
 	
 }
 
+void XLELib::FF::S_EudemonRank::init_conversion() {
+	class_pointer = this;
+	conversions = {};
+}

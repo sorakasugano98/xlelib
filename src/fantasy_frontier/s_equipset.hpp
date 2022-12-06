@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_EQUIPSET_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_EquipSet table type. */
-		class S_EquipSet : public Table {
+		class S_EquipSet : public Conversion<S_EquipSet> {
 			public:
 				/* Create an empty S_EquipSet table without header. */
 				S_EquipSet();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_EquipSet table. Does not delete any attached files. */
 				virtual ~S_EquipSet();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

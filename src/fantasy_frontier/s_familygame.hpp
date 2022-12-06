@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_FAMILYGAME_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_FamilyGame table type. */
-		class S_FamilyGame : public Table {
+		class S_FamilyGame : public Conversion<S_FamilyGame> {
 			public:
 				/* Create an empty S_FamilyGame table without header. */
 				S_FamilyGame();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_FamilyGame table. Does not delete any attached files. */
 				virtual ~S_FamilyGame();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

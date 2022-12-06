@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_DYEINGITEMS_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_DyeingItems table type. */
-		class S_DyeingItems : public Table {
+		class S_DyeingItems : public Conversion<S_DyeingItems> {
 			public:
 				/* Create an empty S_DyeingItems table without header. */
 				S_DyeingItems();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_DyeingItems table. Does not delete any attached files. */
 				virtual ~S_DyeingItems();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }

@@ -2,7 +2,7 @@
 #define XLELIB_FF_S_DROPITEM_HPP
 
 #include "../xlelib.hpp"
-#include "../table.hpp"
+#include "../conversion.hpp"
 
 namespace XLELib {
 	namespace FF {
@@ -21,7 +21,7 @@ namespace XLELib {
 		};
 		
 		/* Class to handle the S_DropItem table type. */
-		class S_DropItem : public Table {
+		class S_DropItem : public Conversion<S_DropItem> {
 			public:
 				/* Create an empty S_DropItem table without header. */
 				S_DropItem();
@@ -31,6 +31,10 @@ namespace XLELib {
 				
 				/* Delete the S_DropItem table. Does not delete any attached files. */
 				virtual ~S_DropItem();
+				
+				/* Init conversion and register required functions.
+				   Do NOT call directly! This function is called by the constructor. */
+				void init_conversion();
 		};
 	}
 }
