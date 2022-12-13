@@ -66,6 +66,12 @@ namespace XLELib {
 			   Second input is the new length of the table after resizing (including id). */
 			void resize_at_end(std::wstring new_version, unsigned long long new_length);
 			
+			/* Convert the table to a given version.
+			   First input is the target version.
+			   Second input is the target length.
+			   DO NOT USE! THIS FUNCTION CAN ONLY BE USED FROM DERIVED CLASSES! */
+			virtual void convert(std::wstring target_version, unsigned long long target_length) {}
+			
 			/* Content of the table. */
 			std::map<unsigned long long, std::vector<std::wstring>> content;
 			

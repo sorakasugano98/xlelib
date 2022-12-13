@@ -32,6 +32,9 @@ void XLELib::Table::read(std::string file_name) {
 	#ifndef _WIN32
 		file.imbue(std::locale(locale));
 	#endif
+	if(!file) {
+		throw TableError("Unable to open input file \"" + file_name + "\".");
+	}
 	std::wstring line = L"";
 	FileType file_type = FileType::UNKNOWN;
 	std::getline(file, line);

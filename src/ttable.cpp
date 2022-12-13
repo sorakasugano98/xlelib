@@ -32,6 +32,9 @@ void XLELib::TTable::read(std::string file_name) {
 	#ifndef _WIN32
 		file.imbue(std::locale(locale));
 	#endif
+	if(!file) {
+		throw TTableError("Unable to open input file \"" + file_name + "\".");
+	}
 	unsigned long long delimiter_counter = 0;
 	std::wstring line = L"";
 	std::getline(file, line);

@@ -12,7 +12,7 @@ namespace XLELib {
 		public:
 			/* Create an error with given message. */
 			ConversionError(std::string msg) {
-				error = "[XLELib FF S_ConversionError] " + msg;
+				error = "[XLELib ConversionError] " + msg;
 			}
 			
 			/* Give the error message. */
