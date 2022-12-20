@@ -70,7 +70,9 @@ namespace XLELib {
 			   First input is the target version.
 			   Second input is the target length.
 			   DO NOT USE! THIS FUNCTION CAN ONLY BE USED FROM DERIVED CLASSES! */
-			virtual void convert(std::wstring target_version, unsigned long long target_length) {}
+			virtual void convert(std::wstring target_version, unsigned long long target_length) {
+				throw TableError("Convert function called in base class!");
+			}
 			
 			/* Content of the table. */
 			std::map<unsigned long long, std::vector<std::wstring>> content;

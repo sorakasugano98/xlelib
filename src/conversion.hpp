@@ -76,7 +76,7 @@ namespace XLELib {
 					return;
 				}
 				std::vector<ConversionPath> best_path = find_conversion_path({}, conversions, this->version, this->length, target_version, target_length);
-				if(best_path.size() == 0) {
+				if(best_path.size() == 0 || best_path[best_path.size() - 1].target_version != target_version || best_path[best_path.size() - 1].target_length != target_length) {
 					throw ConversionError("Unable to find a conversion method from version " + std::string(this->version.begin(), this->version.end()) + "_" + std::to_string(this->length) + " to version " + std::string(target_version.begin(), target_version.end()) + "_" + std::to_string(target_length) + ".");
 				}
 				for(int i = 0; i < best_path.size(); i++) {
