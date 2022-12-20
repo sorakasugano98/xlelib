@@ -142,9 +142,11 @@ void XLELib::Table::read(std::string file_name) {
 				new_entry[new_entry.size() - 1] += L'\n';
 			}
 		}
-		unsigned long long new_entry_id = std::stoull(new_entry[0]);
-		new_entry.erase(new_entry.begin());
-		content.insert(std::make_pair(new_entry_id, new_entry));
+		if(delimiter_counter == length) {
+			unsigned long long new_entry_id = std::stoull(new_entry[0]);
+			new_entry.erase(new_entry.begin());
+			content.insert(std::make_pair(new_entry_id, new_entry));
+		}
 		file.close();
 	} catch(...) {
 		throw TableError("Could not read data of file " + file_name + ".");
