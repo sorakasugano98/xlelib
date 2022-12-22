@@ -61,6 +61,7 @@ namespace XLELib {
 			void set_table_locale(std::string loc);
 			
 			/* Change the table version and length by resizing the table and either adding empty columns or removing existing columns at the end.
+			   The version and length is set to the given inputs, keeping the info up to date.
 			   Be careful, this operation may discard data!
 			   First input is the new version for the table after resizing.
 			   Second input is the new length of the table after resizing (including id). */

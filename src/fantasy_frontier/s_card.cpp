@@ -22,5 +22,12 @@ XLELib::FF::S_Card::~S_Card() {
 
 void XLELib::FF::S_Card::init_conversion() {
 	class_pointer = this;
-	conversions = {};
+	conversions = {
+		{L"V.2", 32, L"V.1", 31, &convert_2_32_to_1_31}
+	};
+}
+
+void XLELib::FF::S_Card::convert_2_32_to_1_31() {
+	/* Remove breakthrough title info */
+	this->resize_at_end(L"V.1", 31);
 }

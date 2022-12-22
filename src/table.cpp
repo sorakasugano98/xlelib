@@ -250,7 +250,6 @@ void XLELib::Table::resize_at_end(std::wstring new_version, unsigned long long n
 				i->second.push_back(L"");
 			}
 		}
-		length = new_length;
 	} else {
 		unsigned long long columns_to_remove = length - new_length;
 		for(std::map<unsigned long long, std::vector<std::wstring>>::iterator i = content.begin(); i != content.end(); i++) {
@@ -258,4 +257,5 @@ void XLELib::Table::resize_at_end(std::wstring new_version, unsigned long long n
 		}
 	}
 	version = new_version;
+	length = new_length;
 }

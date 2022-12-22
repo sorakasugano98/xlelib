@@ -35,6 +35,10 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_Card from version 2.32 to 1.31.
+				   This function removes the breakthrough title info. */
+				void convert_2_32_to_1_31();
 		};
 	}
 }
