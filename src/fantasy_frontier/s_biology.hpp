@@ -35,6 +35,10 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_Biology from version 10.70 to 9.69.
+				   This function removes the blood bar info. */
+				void convert_10_70_to_9_69();
 		};
 	}
 }
