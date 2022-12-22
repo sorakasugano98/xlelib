@@ -34,6 +34,6 @@ void XLELib::FF::S_Biology::convert_9_69_to_10_70() {
 }
 
 void XLELib::FF::S_Biology::convert_10_70_to_9_69() {
-	/* Remove blood bar info */
+	/* Remove blood bar info. */
 	this->resize_at_end(L"V.9", 69);
 }

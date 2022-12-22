@@ -28,6 +28,6 @@ void XLELib::FF::S_Card::init_conversion() {
 }
 
 void XLELib::FF::S_Card::convert_2_32_to_1_31() {
-	/* Remove breakthrough title info */
+	/* Remove breakthrough title info. */
 	this->resize_at_end(L"V.1", 31);
 }
