@@ -35,6 +35,9 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_CardGrow from version 2.41 to 1.21. */
+				void convert_2_41_to_1_21();
 		};
 	}
 }
