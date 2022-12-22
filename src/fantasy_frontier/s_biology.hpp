@@ -36,6 +36,11 @@ namespace XLELib {
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
 				
+				/* Convert S_Biology from version 9.69 to 10.70.
+				   This function adds an empty column for the blood bar.
+				   Blood bar values have to be added manually. */
+				void convert_9_69_to_10_70();
+				
 				/* Convert S_Biology from version 10.70 to 9.69.
 				   This function removes the blood bar info. */
 				void convert_10_70_to_9_69();
