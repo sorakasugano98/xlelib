@@ -35,6 +35,10 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_Furniture from version 2.13 to 1.12.
+				   This function removes an action column. */
+				void convert_2_13_to_1_12();
 		};
 	}
 }
