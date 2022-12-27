@@ -22,5 +22,12 @@ XLELib::FF::S_PartnerMission::~S_PartnerMission() {
 
 void XLELib::FF::S_PartnerMission::init_conversion() {
 	class_pointer = this;
-	conversions = {};
+	conversions = {
+		{L"V.3", 20, L"V.2", 19, &convert_3_20_to_2_19}
+	};
+}
+
+void XLELib::FF::S_PartnerMission::convert_3_20_to_2_19() {
+	/* Remove Eidolon Wishing Coin column. */
+	this->resize_at_end(L"V.2", 19);
 }

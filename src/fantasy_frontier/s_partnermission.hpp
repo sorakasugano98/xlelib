@@ -35,6 +35,10 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_PartnerMission from version 3.20 to 2.19.
+				   This function removes the column for Eidolon Wishing Coins. */
+				void convert_3_20_to_2_19();
 		};
 	}
 }
