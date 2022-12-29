@@ -36,6 +36,10 @@ namespace XLELib {
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
 				
+				/* Convert S_Biology from version 6.65 to 5.64.
+				   This function removes the bonding value. */
+				void convert_6_65_to_5_64();
+				
 				/* Convert S_Biology from version 7.66 to 6.65.
 				   This function removes the column to hide/show NPCs for quests. */
 				void convert_7_66_to_6_65();
