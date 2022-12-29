@@ -35,6 +35,10 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_EudemonBattleItem from version 4.13 to 3.9.
+				   This function removes the gaia chronicle fortification buffs for level 25-40 of eidolon accessories. */
+				void convert_4_13_to_3_9();
 		};
 	}
 }

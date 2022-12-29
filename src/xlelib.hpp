@@ -4,6 +4,6 @@
 #include <string>
 
 /* Library version */
-#define XLELIB_VERSION "1.19"
+#define XLELIB_VERSION "1.20"
 
 #endif
