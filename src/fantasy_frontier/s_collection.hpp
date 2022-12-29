@@ -35,6 +35,11 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_Collection from version 3.7 to 2.6.
+				   This function removes all items from the categories "Pet" and "Special".
+				   This function removes the collection points. */
+				void convert_3_7_to_2_6();
 		};
 	}
 }
