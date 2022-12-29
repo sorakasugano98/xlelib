@@ -22,5 +22,12 @@ XLELib::FF::S_DiagramNode::~S_DiagramNode() {
 
 void XLELib::FF::S_DiagramNode::init_conversion() {
 	class_pointer = this;
-	conversions = {};
+	conversions = {
+		{L"V.3", 15, L"V.2", 14, &convert_3_15_to_2_14}
+	};
+}
+
+void XLELib::FF::S_DiagramNode::convert_3_15_to_2_14() {
+	/* Remove the column for claimable guild coins. */
+	this->resize_at_end(L"V.2", 14);
 }

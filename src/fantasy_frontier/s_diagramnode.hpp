@@ -35,6 +35,10 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Convert S_DiagramNode from version 3.15 to 2.14.
+				   This function removes the column for claimable guild coins. */
+				void convert_3_15_to_2_14();
 		};
 	}
 }
