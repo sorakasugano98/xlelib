@@ -35,6 +35,10 @@ namespace XLELib {
 				/* Init conversion and register required functions.
 				   Do NOT call directly! This function is called by the constructor. */
 				void init_conversion();
+				
+				/* Remove or change the effects of the Astrologer Clas.
+				   Requires S_Enchant.ini to be of version V.2|62. */
+				void remove_astrologer();
 		};
 	}
 }
