@@ -39,22 +39,52 @@ void XLELib::TTable::read(std::string file_name) {
 	std::wstring line = L"";
 	std::getline(file, line);
 	try {
-		line.pop_back();
-		length = std::stoull(line);
-		std::getline(file, line);
-		std::wstring translated_column_id = L"";
-		for(unsigned long long i = 0; i < line.size(); i++) {
-			if(line[i] == L'|') {
-				delimiter_counter++;
-				if(delimiter_counter != 1) {
-					translated_columns.push_back(std::stoull(translated_column_id));
-					translated_column_id = L"";
+		if(line[0] == L'V') {
+			int index = 0;
+			while(line[index] != L'|') {
+				version += line[index];
+				index++;
+			}
+			line.pop_back();
+			std::wstring length_str = L"";
+			for(int i = index + 1; i < line.size(); i++) {
+				length_str += line[index];
+			}
+			length = std::stoull(length_str);
+			std::wstring translated_column_id = L"";
+			for(unsigned long long i = 2; i < line.size(); i++) {
+				if(line[i] == L'|') {
+					delimiter_counter++;
+					if(delimiter_counter != 1) {
+						translated_columns.push_back(std::stoull(translated_column_id));
+						translated_column_id = L"";
+					}
+				} else {
+					if(delimiter_counter == 0) {
+						version += line[i];
+					} else  {
+						translated_column_id += line[i];
+					}
 				}
-			} else {
-				if(delimiter_counter == 0) {
-					version += line[i];
-				} else  {
-					translated_column_id += line[i];
+			}
+		} else {
+			line.pop_back();
+			length = std::stoull(line);
+			std::getline(file, line);
+			std::wstring translated_column_id = L"";
+			for(unsigned long long i = 0; i < line.size(); i++) {
+				if(line[i] == L'|') {
+					delimiter_counter++;
+					if(delimiter_counter != 1) {
+						translated_columns.push_back(std::stoull(translated_column_id));
+						translated_column_id = L"";
+					}
+				} else {
+					if(delimiter_counter == 0) {
+						version += line[i];
+					} else  {
+						translated_column_id += line[i];
+					}
 				}
 			}
 		}
@@ -103,7 +133,7 @@ void XLELib::TTable::read(std::string file_name) {
 	}
 }
 
-void XLELib::TTable::write(std::string file_name) {
+void XLELib::TTable::write(std::string file_name, FileType file_type) {
 	try {
 		#ifdef _WIN32
 			setlocale(LC_ALL, locale.c_str());
@@ -112,7 +142,21 @@ void XLELib::TTable::write(std::string file_name) {
 		#ifndef _WIN32
 			file.imbue(std::locale(locale));
 		#endif
-		
+		switch(file_type) {
+			case FileType::VERSION_FIRST:
+				file << version << L"|" << std::to_wstring(length) << L"|" << std::endl << L"1|";
+				for(int i = 0; i < translated_columns.size(); i++) {
+					file << translated_columns[i] << L"|";
+				}
+				file << std::endl;
+				break;
+			case FileType::VERSION_SECOND:
+				file << std::to_wstring(length) << L"|" << std::endl << version << L"|";
+				for(int i = 0; i < translated_columns.size(); i++) {
+					file << translated_columns[i] << L"|";
+				}
+				file << std::endl;
+		}
 		for(std::map<unsigned long long, std::vector<std::wstring>>::iterator i = content.begin(); i != content.end(); i++) {
 			file << std::to_wstring(i->first) << L"|";
 			for(unsigned long long j = 0; j < length - 1; j++) {
@@ -148,9 +192,17 @@ void XLELib::TTable::clean() {
 void XLELib::TTable::set_table_locale(std::string loc) {
 	if(loc == "de") {
 		#ifdef _WIN32
-			locale = "german-de";
+			locale = "iso-8859-1";
 		#else
-			locale = "de_DE.UTF-8";
+			locale = "de_DE.ISO-8859-1";
+		#endif
+		return;
+	}
+	if(loc == "jp") {
+		#ifdef _WIN32
+			locale = "shift_jis";
+		#else
+			locale = "ja_JP.EUC-JP";
 		#endif
 		return;
 	}

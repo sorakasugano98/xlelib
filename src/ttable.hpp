@@ -27,6 +27,13 @@ namespace XLELib {
 	/* Class to handle the translation table type. */
 	class TTable {
 		public:
+			/* Enumeration for different types of translation tables. */
+			enum class FileType {
+				UNKNOWN,
+				VERSION_FIRST,
+				VERSION_SECOND
+			};
+			
 			/* Create an empty translation table without header. */
 			TTable();
 			
@@ -42,7 +49,7 @@ namespace XLELib {
 			
 			/* Write the translation table to a file.
 			   Input is the file name (including path). */
-			void write(std::string file_name);
+			void write(std::string file_name, FileType file_type = FileType::VERSION_SECOND);
 			
 			/* Remove empty entries, where only the id exists. */
 			void clean();
