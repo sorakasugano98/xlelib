@@ -20,6 +20,12 @@ XLELib::TTable::TTable(std::string input_file) {
 	read(input_file);
 }
 
+XLELib::TTable::TTable(std::string input_file, std::string read_locale) {
+	set_table_locale(read_locale);
+	/* Read the table from file. */
+	read(input_file);
+}
+
 XLELib::TTable::~TTable() {
 	
 }
@@ -45,10 +51,9 @@ void XLELib::TTable::read(std::string file_name) {
 				version += line[index];
 				index++;
 			}
-			line.pop_back();
 			std::wstring length_str = L"";
-			for(int i = index + 1; i < line.size(); i++) {
-				length_str += line[index];
+			for(int i = index + 1; i < line.size() - 1; i++) {
+				length_str += line[i];
 			}
 			length = std::stoull(length_str);
 			std::wstring translated_column_id = L"";
@@ -60,11 +65,7 @@ void XLELib::TTable::read(std::string file_name) {
 						translated_column_id = L"";
 					}
 				} else {
-					if(delimiter_counter == 0) {
-						version += line[i];
-					} else  {
-						translated_column_id += line[i];
-					}
+					translated_column_id += line[i];
 				}
 			}
 		} else {

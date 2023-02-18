@@ -40,6 +40,9 @@ namespace XLELib {
 			/* Read the translation table from a given file. */
 			TTable(std::string input_file);
 			
+			/* Read the translation table from a given file with a specified locale. */
+			TTable(std::string input_file, std::string read_locale);
+			
 			/* Delete the translation table. Does not delete any attached files. */
 			virtual ~TTable();
 			
