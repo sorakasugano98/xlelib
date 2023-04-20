@@ -214,9 +214,17 @@ void XLELib::Table::clean() {
 void XLELib::Table::set_table_locale(std::string loc) {
 	if(loc == "de") {
 		#ifdef _WIN32
-			locale = "german-de";
+			locale = "iso-8859-1";
 		#else
-			locale = "de_DE.UTF-8";
+			locale = "de_DE.ISO-8859-1";
+		#endif
+		return;
+	}
+	if(loc == "jp") {
+		#ifdef _WIN32
+			locale = "shift_jis";
+		#else
+			locale = "ja_JP.EUC-JP";
 		#endif
 		return;
 	}
